@@ -1,18 +1,24 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
     <title>@ViewData["Title"] - Planefall</title>
-    <link rel="stylesheet" href="~/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/css/site.css"/>
 </head>
 <body>
+<partial name="_NavbarPartial"/>
 
-@RenderBody()
+<main>
+    <div class="container mt-4">
+        @RenderBody()
+    </div>
+</main>
 
 <script src="~/js/jquery.min.js"></script>
 <script src="~/js/bootstrap.bundle.min.js"></script>
-@RenderSection("Scripts", required: false)
+@RenderSection("Scripts", false)
 </body>
 </html>

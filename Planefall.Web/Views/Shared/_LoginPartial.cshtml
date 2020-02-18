@@ -1,23 +1,18 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<PlanefallUser> SignInManager
-@inject UserManager<PlanefallUser> UserManager
-
-<ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
+﻿@if (User.Identity.IsAuthenticated)
 {
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>
+    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/" method="post" id="logoutForm">
+        <li class="nav-item navbar-popover"
+            data-toggle="tooltip" data-placement="bottom" title="Logout">
+            <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="ml-2 d-md-none">Logout</span>
+            </a>
+        </li>
+    </form>
 }
 else
 {
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Employee Login</a>
     </li>
 }
-</ul>
