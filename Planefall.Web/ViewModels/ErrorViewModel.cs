@@ -1,4 +1,4 @@
-namespace Planefall.Models
+namespace Planefall.ViewModels
 {
     public class ErrorViewModel
     {

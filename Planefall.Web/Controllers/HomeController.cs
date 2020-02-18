@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using Models;
+    using ViewModels;
 
     public class HomeController : Controller
     {

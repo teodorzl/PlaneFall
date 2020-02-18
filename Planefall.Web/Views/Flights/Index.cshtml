@@ -1,0 +1,37 @@
+@model ICollection<Planefall.ViewModels.Flight.FlightListingViewModel>
+
+@{
+    ViewData["Title"] = "Flights";
+}
+
+<table class="table table-hover table-bordered auto-datatable">
+    <thead>
+    <tr class="font-weight-bold">
+        <th>From</th>
+        <th>To</th>
+        <th>Departure time</th>
+        <th>Duration</th>
+        <th>Flight number</th>
+        <th>Plane type</th>
+        <th>Pilot</th>
+        <th>Regular seats</th>
+        <th>Business seats</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var flight in Model)
+    {
+        <tr>
+            <td>@flight.FromAirport</td>
+            <td>@flight.ToAirport</td>
+            <td>@flight.DepartureTime</td>
+            <td>@flight.ArrivalTime.Subtract(flight.DepartureTime)</td>
+            <td>@flight.FlightNumber</td>
+            <td>@flight.PlaneType</td>
+            <td>TODO</td>
+            <td>@flight.RegularSeats</td>
+            <td>@flight.BusinessSeats</td>
+        </tr>
+    }
+    </tbody>
+</table>
