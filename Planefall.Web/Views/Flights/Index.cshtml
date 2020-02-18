@@ -16,15 +16,18 @@
 <table class="table table-hover table-bordered auto-datatable">
     <thead>
     <tr class="font-weight-bold">
+        <th>Flight number</th>
         <th>From</th>
         <th>To</th>
         <th>Departure time</th>
         <th>Duration</th>
-        <th>Flight number</th>
-        <th>Plane type</th>
-        <th>Pilot</th>
-        <th>Regular seats</th>
-        <th>Business seats</th>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <th>Plane type</th>
+            <th>Pilot</th>
+            <th>Regular seats</th>
+            <th>Business seats</th>
+        }
         <th>Actions</th>
     </tr>
     </thead>
@@ -32,15 +35,18 @@
     @foreach (var flight in Model)
     {
         <tr>
+            <td>@flight.FlightNumber</td>
             <td>@flight.FromAirport</td>
             <td>@flight.ToAirport</td>
             <td>@flight.DepartureTime</td>
             <td>@flight.ArrivalTime.Subtract(flight.DepartureTime)</td>
-            <td>@flight.FlightNumber</td>
-            <td>@flight.PlaneType</td>
-            <td>@flight.PilotName</td>
-            <td>@flight.RegularSeats</td>
-            <td>@flight.BusinessSeats</td>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <td>@flight.PlaneType</td>
+                <td>@flight.PilotName</td>
+                <td>@flight.RegularSeats</td>
+                <td>@flight.BusinessSeats</td>
+            }
             <td>
                 @if (User.Identity.IsAuthenticated)
                 {

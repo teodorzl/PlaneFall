@@ -1,5 +1,6 @@
 namespace Planefall.Controllers
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
@@ -24,6 +25,16 @@ namespace Planefall.Controllers
             var flights = (await this.flightsService.GetAllFlightsAsync())
                 .Select(Mapper.Map<FlightListingViewModel>)
                 .ToArray();
+
+
+            // only show future flights to non-authenticated users
+
+            if (!this.User.Identity.IsAuthenticated)
+            {
+                flights = flights
+                    .Where(f => f.DepartureTime > DateTime.UtcNow)
+                    .ToArray();
+            }
 
             return this.View(flights);
         }
