@@ -8,6 +8,7 @@ namespace Planefall.Services
     using Interfaces;
     using Microsoft.EntityFrameworkCore;
     using Models.Flight;
+    using Planefall.Models;
 
     public class FlightsService : BaseService, IFlightsService
     {
@@ -43,6 +44,22 @@ namespace Planefall.Services
             var serviceFlight = Mapper.Map<FlightDetailsServiceModel>(flight);
 
             return serviceFlight;
+        }
+
+        public async Task<bool> CreateAsync(FlightCreateServiceModel model)
+        {
+            if (!this.IsEntityStateValid(model))
+            {
+                return false;
+            }
+
+            var flight = Mapper.Map<Flight>(model);
+
+            await this.Context.Flights.AddAsync(flight);
+
+            await this.Context.SaveChangesAsync();
+
+            return true;
         }
     }
 }

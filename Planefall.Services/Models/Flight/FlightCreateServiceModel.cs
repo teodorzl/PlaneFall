@@ -1,15 +1,13 @@
-namespace Planefall.Models
+namespace Planefall.Services.Models.Flight
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
+    using Common.Mapping.Interfaces;
+    using Planefall.Models;
 
-    public class Flight
+    public class FlightCreateServiceModel : IMapWith<Flight>, IValidatableObject
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Id { get; set; }
-
         [Required]
         [StringLength(3, MinimumLength = 3)]
         public string FromAirport { get; set; }
@@ -40,6 +38,13 @@ namespace Planefall.Models
 
         public int BusinessSeats { get; set; }
 
-        public ICollection<Ticket> Tickets { get; set; }
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (this.DepartureTime > this.ArrivalTime)
+            {
+                yield return new ValidationResult("The departure time must be before the arrival time",
+                    new[] {nameof(this.DepartureTime)});
+            }
+        }
     }
 }

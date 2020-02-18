@@ -9,5 +9,6 @@ namespace Planefall.Services.Interfaces
     {
         Task<IEnumerable<FlightListingServiceModel>> GetAllFlightsAsync();
         Task<FlightDetailsServiceModel> GetDetailsAsync(string id);
+        Task<bool> CreateAsync(FlightCreateServiceModel model);
     }
 }

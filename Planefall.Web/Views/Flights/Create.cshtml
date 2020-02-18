@@ -1,0 +1,75 @@
+@model Planefall.ViewModels.Flight.FlightCreateBindingModel
+
+@{
+    ViewData["Title"] = "Create flight";
+}
+
+<div class="container text-center w-100 w-md-50 mx-auto">
+    <h1>Create flight</h1>
+
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="FromAirport"></label>
+            <input asp-for="FromAirport" class="form-control"/>
+            <span asp-validation-for="FromAirport" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ToAirport"></label>
+            <input asp-for="ToAirport" class="form-control"/>
+            <span asp-validation-for="ToAirport" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="DepartureTime"></label>
+            <input id="departureTime" asp-for="DepartureTime" class="form-control"/>
+            <span asp-validation-for="DepartureTime" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ArrivalTime"></label>
+            <input id="arrivalTime" asp-for="ArrivalTime" class="form-control"/>
+            <span asp-validation-for="ArrivalTime" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PlaneType"></label>
+            <input asp-for="PlaneType" class="form-control"/>
+            <span asp-validation-for="PlaneType" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="FlightNumber"></label>
+            <input asp-for="FlightNumber" class="form-control"/>
+            <span asp-validation-for="FlightNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PilotName"></label>
+            <input asp-for="PilotName" class="form-control"/>
+            <span asp-validation-for="PilotName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="RegularSeats"></label>
+            <input asp-for="RegularSeats" class="form-control"/>
+            <span asp-validation-for="RegularSeats" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="BusinessSeats"></label>
+            <input asp-for="BusinessSeats" class="form-control"/>
+            <span asp-validation-for="BusinessSeats" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </form>
+</div>
+
+@section CustomCss
+{
+    <link href="~/css/jquery.datetimepicker.min.css" rel="stylesheet">
+}
+
+@section Scripts
+{
+    <script src="~/js/jquery.datetimepicker.full.min.js"></script>
+
+    <script>
+        $('#departureTime,#arrivalTime').datetimepicker({step: 10});
+    </script>
+}

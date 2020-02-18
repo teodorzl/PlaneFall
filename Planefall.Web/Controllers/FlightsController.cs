@@ -3,12 +3,14 @@ namespace Planefall.Controllers
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
+    using Common;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Services.Interfaces;
+    using Services.Models.Flight;
     using ViewModels.Flight;
 
-    public class FlightsController : Controller
+    public class FlightsController : BaseController
     {
         private readonly IFlightsService flightsService;
 
@@ -44,6 +46,37 @@ namespace Planefall.Controllers
             var flightDetailsViewModel = Mapper.Map<FlightDetailsViewModel>(serviceFlight);
 
             return this.View(flightDetailsViewModel);
+        }
+
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public IActionResult Create()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public async Task<IActionResult> Create(FlightCreateBindingModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            var serviceModel = Mapper.Map<FlightCreateServiceModel>(model);
+
+            var success = await this.flightsService.CreateAsync(serviceModel);
+
+            if (!success)
+            {
+                this.ShowErrorMessage(NotificationMessages.FlightCreateErrorMessage);
+
+                return this.View(model);
+            }
+
+            this.ShowSuccessMessage(NotificationMessages.FlightCreateSuccessMessage);
+
+            return this.RedirectToAction("Index");
         }
     }
 }
