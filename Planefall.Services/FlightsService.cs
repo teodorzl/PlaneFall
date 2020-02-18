@@ -2,11 +2,12 @@ namespace Planefall.Services
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using Data;
     using Interfaces;
     using Microsoft.EntityFrameworkCore;
-    using Models;
+    using Models.Flight;
 
     public class FlightsService : BaseService, IFlightsService
     {
@@ -16,11 +17,32 @@ namespace Planefall.Services
 
         public async Task<IEnumerable<FlightListingServiceModel>> GetAllFlightsAsync()
         {
-            var serviceBooks = await this.Context.Flights
+            var flights = await this.Context.Flights
                 .ProjectTo<FlightListingServiceModel>()
                 .ToArrayAsync();
 
-            return serviceBooks;
+            return flights;
+        }
+
+        public async Task<FlightDetailsServiceModel> GetDetailsAsync(string id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+
+            var flight = await this.Context.Flights
+                .Include(f => f.Tickets)
+                .SingleOrDefaultAsync(f => f.Id == id);
+
+            if (flight == null)
+            {
+                return null;
+            }
+
+            var serviceFlight = Mapper.Map<FlightDetailsServiceModel>(flight);
+
+            return serviceFlight;
         }
     }
 }

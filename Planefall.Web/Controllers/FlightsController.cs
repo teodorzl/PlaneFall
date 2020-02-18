@@ -3,6 +3,7 @@ namespace Planefall.Controllers
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Services.Interfaces;
     using ViewModels.Flight;
@@ -23,6 +24,26 @@ namespace Planefall.Controllers
                 .ToArray();
 
             return this.View(flights);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Details(string id)
+        {
+            if (id == null)
+            {
+                return this.NotFound();
+            }
+
+            var serviceFlight = await this.flightsService.GetDetailsAsync(id);
+
+            if (serviceFlight == null)
+            {
+                return this.NotFound();
+            }
+
+            var flightDetailsViewModel = Mapper.Map<FlightDetailsViewModel>(serviceFlight);
+
+            return this.View(flightDetailsViewModel);
         }
     }
 }

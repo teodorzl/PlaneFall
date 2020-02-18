@@ -1,4 +1,4 @@
-namespace Planefall.Services.Models
+namespace Planefall.Services.Models.Flight
 {
     using System;
     using Common.Mapping.Interfaces;
