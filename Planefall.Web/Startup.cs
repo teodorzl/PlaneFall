@@ -14,6 +14,8 @@ namespace Planefall
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Models;
+    using Services;
+    using Services.Interfaces;
 
     public class Startup
     {
@@ -49,6 +51,10 @@ namespace Planefall
                 options => { options.ValidationInterval = TimeSpan.Zero; });
 
             services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
+
+            
+            // Register services
+            services.AddScoped<IFlightsService, FlightsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
