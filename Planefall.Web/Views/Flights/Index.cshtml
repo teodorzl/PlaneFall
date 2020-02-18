@@ -1,8 +1,17 @@
+@using Planefall.Common
 @model ICollection<Planefall.ViewModels.Flight.FlightListingViewModel>
 
 @{
     ViewData["Title"] = "Flights";
 }
+
+<h3 class="text-center mx-5">Flights</h3>
+
+@if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+{
+    <a asp-action="Create" class="btn btn-primary float-right">Create new</a>
+}
+
 
 <table class="table table-hover table-bordered auto-datatable">
     <thead>
