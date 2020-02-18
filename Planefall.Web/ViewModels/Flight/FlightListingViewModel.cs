@@ -20,6 +20,8 @@ namespace Planefall.ViewModels.Flight
 
         public string FlightNumber { get; set; }
 
+        public string PilotName { get; set; }
+
         public int RegularSeats { get; set; }
 
         public int BusinessSeats { get; set; }

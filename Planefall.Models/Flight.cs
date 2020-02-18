@@ -7,7 +7,7 @@ namespace Planefall.Models
     public class Flight
     {
         public string Id { get; set; }
-        
+
         [Required]
         [StringLength(3, MinimumLength = 3)]
         public string FromAirport { get; set; }
@@ -29,6 +29,10 @@ namespace Planefall.Models
         [Required]
         [StringLength(15, MinimumLength = 3)]
         public string FlightNumber { get; set; }
+
+        [Required]
+        [StringLength(35, MinimumLength = 3)]
+        public string PilotName { get; set; }
 
         public int RegularSeats { get; set; }
 

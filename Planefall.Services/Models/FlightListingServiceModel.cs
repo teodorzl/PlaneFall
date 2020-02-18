@@ -20,6 +20,8 @@ namespace Planefall.Services.Models
 
         public string FlightNumber { get; set; }
 
+        public string PilotName { get; set; }
+
         public int RegularSeats { get; set; }
 
         public int BusinessSeats { get; set; }
