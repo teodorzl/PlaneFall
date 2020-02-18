@@ -8,6 +8,7 @@ namespace Planefall
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Routing;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
@@ -33,9 +34,12 @@ namespace Planefall
                 options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<PlanefallUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<PlanefallDbContext>();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            });
             services.AddRazorPages();
-            
+
             services.Configure<IdentityOptions>(options =>
             {
                 // Default Password settings.
@@ -52,7 +56,7 @@ namespace Planefall
 
             services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
-            
+
             // Register services
             services.AddScoped<IFlightsService, FlightsService>();
         }
@@ -62,7 +66,7 @@ namespace Planefall
         {
             Mapper.Initialize(config => config.AddProfile<DefaultProfile>());
             app.InitializeDatabase();
-            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
