@@ -4,4 +4,8 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Planefall.Data\Planefall.Data.csproj" />
+    </ItemGroup>
+
 </Project>
