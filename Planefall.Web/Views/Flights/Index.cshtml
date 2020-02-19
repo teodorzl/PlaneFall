@@ -48,6 +48,7 @@
                 <td>@flight.BusinessSeats</td>
             }
             <td>
+                <a class="btn btn-primary" asp-controller="Flights" asp-action="Book" asp-route-id="@flight.Id">Reserve ticket</a>
                 @if (User.Identity.IsAuthenticated)
                 {
                     <a class="btn btn-secondary" asp-controller="Flights" asp-action="Details" asp-route-id="@flight.Id">Details</a>
