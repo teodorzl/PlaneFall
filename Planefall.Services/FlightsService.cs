@@ -61,5 +61,26 @@ namespace Planefall.Services
 
             return true;
         }
+
+        public async Task<FlightBookingServiceModel> GetBasicFlightInformationAsync(string id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+
+            var flight = await this.Context.Flights
+                .Include(f => f.Tickets)
+                .SingleOrDefaultAsync(f => f.Id == id);
+
+            if (flight == null)
+            {
+                return null;
+            }
+
+            var serviceFlight = Mapper.Map<FlightBookingServiceModel>(flight);
+
+            return serviceFlight;
+        }
     }
 }
