@@ -14,23 +14,28 @@ namespace Planefall.ViewModels.Ticket
 
         [Required]
         [StringLength(20, MinimumLength = 3)]
+        [Display(Name = "First name")]
         public string FirstName { get; set; }
 
         [StringLength(20, MinimumLength = 3)]
+        [Display(Name = "Middle name")]
         public string MiddleName { get; set; }
 
         [Required]
         [StringLength(20, MinimumLength = 3)]
+        [Display(Name = "Last name")]
         public string LastName { get; set; }
 
         [Required]
         [StringLength(10, MinimumLength = 10)]
         [RegularExpression("\\d{10}")]
+        [Display(Name = "ID number")]
         public string IdNumber { get; set; }
 
         [Required]
         [Phone]
         [StringLength(15, MinimumLength = 8)]
+        [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
 
         [Required]
@@ -39,6 +44,7 @@ namespace Planefall.ViewModels.Ticket
         public string Citizenship { get; set; }
 
         [Required]
+        [Display(Name = "Ticket type")]
         public TicketType TicketType { get; set; }
 
         [Required]
