@@ -59,6 +59,7 @@ namespace Planefall
 
             // Register services
             services.AddScoped<IFlightsService, FlightsService>();
+            services.AddScoped<ITicketsService, TicketsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
