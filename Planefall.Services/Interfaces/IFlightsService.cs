@@ -2,7 +2,6 @@ namespace Planefall.Services.Interfaces
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Models;
     using Models.Flight;
 
     public interface IFlightsService

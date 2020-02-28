@@ -4,7 +4,6 @@ namespace Planefall.ViewModels.Flight
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using Common.Mapping.Interfaces;
-    using Models;
     using Services.Models.Flight;
 
     public class FlightCreateBindingModel : IMapWith<FlightCreateServiceModel>, IValidatableObject

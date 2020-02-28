@@ -5,8 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Planefall.Common\Planefall.Common.csproj" />
-      <ProjectReference Include="..\Planefall.Data\Planefall.Data.csproj" />
+        <ProjectReference Include="..\Planefall.Common\Planefall.Common.csproj" />
+        <ProjectReference Include="..\Planefall.Data\Planefall.Data.csproj" />
     </ItemGroup>
 
 </Project>

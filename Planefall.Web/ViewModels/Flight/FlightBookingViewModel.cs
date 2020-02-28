@@ -1,10 +1,7 @@
 namespace Planefall.ViewModels.Flight
 {
     using System;
-    using System.Linq;
-    using AutoMapper;
     using Common.Mapping.Interfaces;
-    using Models;
     using Services.Models.Flight;
 
     public class FlightBookingViewModel : IMapWith<FlightBookingServiceModel>

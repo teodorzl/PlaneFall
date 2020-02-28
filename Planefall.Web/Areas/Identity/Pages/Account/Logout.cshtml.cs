@@ -1,21 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using Planefall.Models;
-
 namespace Planefall.Areas.Identity.Pages.Account
 {
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Microsoft.Extensions.Logging;
+    using Models;
+
     [AllowAnonymous]
     public class LogoutModel : PageModel
     {
-        private readonly SignInManager<PlanefallUser> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
+        private readonly SignInManager<PlanefallUser> _signInManager;
 
         public LogoutModel(SignInManager<PlanefallUser> signInManager, ILogger<LogoutModel> logger)
         {
