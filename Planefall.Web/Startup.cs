@@ -2,6 +2,7 @@ namespace Planefall
 {
     using System;
     using AutoMapper;
+    using Common.EmailSender;
     using Common.Mapping;
     using Data;
     using Extensions;
@@ -14,6 +15,7 @@ namespace Planefall
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.VisualStudio.Web.CodeGenerators.Mvc;
     using Models;
     using Services;
     using Services.Interfaces;
@@ -56,6 +58,8 @@ namespace Planefall
 
             services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
+            services.Configure<EmailConfiguration>(this.Configuration.GetSection(nameof(EmailConfiguration)));
+            services.AddScoped<IEmailSender, EmailSender>();
 
             // Register services
             services.AddScoped<IFlightsService, FlightsService>();

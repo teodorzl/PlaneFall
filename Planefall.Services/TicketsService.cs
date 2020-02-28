@@ -2,6 +2,8 @@ namespace Planefall.Services
 {
     using System.Threading.Tasks;
     using AutoMapper;
+    using Common;
+    using Common.EmailSender;
     using Data;
     using Interfaces;
     using Microsoft.EntityFrameworkCore;
@@ -10,8 +12,11 @@ namespace Planefall.Services
 
     public class TicketsService : BaseService, ITicketsService
     {
-        public TicketsService(PlanefallDbContext context) : base(context)
+        private readonly IEmailSender emailSender;
+
+        public TicketsService(PlanefallDbContext context, IEmailSender emailSender) : base(context)
         {
+            this.emailSender = emailSender;
         }
 
         public async Task<bool> BookTicket(TicketBookingServiceModel model)
@@ -50,6 +55,19 @@ namespace Planefall.Services
             await this.Context.AddAsync(ticket);
 
             await this.Context.SaveChangesAsync();
+
+
+            this.emailSender.SendEmail(model.Email, EmailMessages.ReservationConfirmationSubject,
+                string.Format(EmailMessages.ReservationConfirmationBody,
+                    ticket.FirstName,
+                    ticket.LastName,
+                    flight.FlightNumber,
+                    ticket.MiddleName,
+                    ticket.IdNumber,
+                    ticket.PhoneNumber,
+                    ticket.Citizenship,
+                    ticket.TicketType
+                ));
 
             return true;
         }
