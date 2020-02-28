@@ -2,7 +2,6 @@ namespace Planefall.ViewModels.Ticket
 {
     using Common.Mapping.Interfaces;
     using Models;
-    using Services.Models;
     using Services.Models.Ticket;
 
     public class TicketListingViewModel : IMapWith<TicketListingServiceModel>
@@ -20,5 +19,7 @@ namespace Planefall.ViewModels.Ticket
         public string Citizenship { get; set; }
 
         public TicketType TicketType { get; set; }
+
+        public string Email { get; set; }
     }
 }

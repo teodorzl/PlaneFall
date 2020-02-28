@@ -16,7 +16,9 @@ namespace Planefall.Services.Models.Ticket
         public string PhoneNumber { get; set; }
 
         public string Citizenship { get; set; }
-        
+
         public TicketType TicketType { get; set; }
+
+        public string Email { get; set; }
     }
 }

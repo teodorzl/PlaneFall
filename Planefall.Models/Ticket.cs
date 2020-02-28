@@ -35,7 +35,11 @@ namespace Planefall.Models
         [Required]
         [StringLength(3, MinimumLength = 3)]
         public string Citizenship { get; set; }
-        
+
+        [Required]
+        [StringLength(50, MinimumLength = 3)]
+        public string Email { get; set; }
+
         [Required]
         public TicketType TicketType { get; set; }
     }
