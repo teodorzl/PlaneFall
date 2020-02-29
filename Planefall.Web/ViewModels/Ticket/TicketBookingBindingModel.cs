@@ -39,7 +39,6 @@ namespace Planefall.ViewModels.Ticket
         public string PhoneNumber { get; set; }
 
         [Required]
-        [StringLength(3, MinimumLength = 3)]
         [RegularExpression("[A-Z]{3}")]
         public string Citizenship { get; set; }
 
