@@ -16,5 +16,7 @@ namespace Planefall.Common
         public const string UserDemoteErrorMessage = "An error occured while demoting user";
         public const string UserDemoteSuccessMessage = "Successfully demoted user";
         public const string UserCreateSuccessMessage = "Successfully created user";
+
+        public const string WrongPassword = "Invalid username or password";
     }
 }

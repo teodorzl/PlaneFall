@@ -2,56 +2,6 @@
     background-color: #232323;
 }
 
-.bg-grey-ish {
-    background-color: #e6e6e6;
-}
-
-.login-box {
-    background-color: rgba(23, 23, 23, .5);
-    border-radius: 2.5em;
-}
-
-.login-box button {
-    border-radius: 0;
-}
-
-.login-box input {
-    background-color: transparent !important;
-    color: white !important;
-    border: none;
-    border-radius: 0;
-    transition: border-bottom, 300ms;
-    border-bottom: 1px solid rgba(255, 255, 255, .2);
-}
-
-.login-box input:focus, .login-box input:hover {
-    border: none;
-
-    border-bottom: 1px solid rgba(255, 255, 255, 1);
-
-    box-shadow: none;
-}
-
-.book-thumbnail-img {
-    height: 30vh;
-    object-fit: cover;
-}
-
-.book-details-img {
-    max-width: 100%;
-    object-fit: cover;
-}
-
-.book-listing-img {
-    height: 20vh;
-    max-width: 100%;
-    object-fit: cover;
-}
-
-.rounded-corners {
-    border-radius: 24px 50px !important;
-}
-
 @media (min-width: 768px) {
     .w-md-75 {
         width: 75% !important;
