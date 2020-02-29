@@ -5,60 +5,70 @@
     ViewData["Title"] = "Flights";
 }
 
-<h3 class="text-center mx-5">Flights</h3>
+<div style="background-color: rgba(255,255,255,0.7); border-radius: 25px" class="p-3">
 
-@if (User.IsInRole(GlobalConstants.AdministratorRoleName))
-{
-    <a asp-action="Create" class="btn btn-primary float-right">Create new</a>
-}
+    <h3 class="text-center mx-5">Flights</h3>
 
-
-<table class="table table-hover table-bordered auto-datatable">
-    <thead>
-    <tr class="font-weight-bold">
-        <th>Flight number</th>
-        <th>From</th>
-        <th>To</th>
-        <th>Departure time</th>
-        <th>Duration</th>
-        @if (User.Identity.IsAuthenticated)
-        {
-            <th>Plane type</th>
-            <th>Pilot</th>
-            <th>Regular seats</th>
-            <th>Business seats</th>
-            <th class="none">Actions</th>
-        }
-        else
-        {
-            <th>Booking</th>
-        }
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var flight in Model)
+    @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
     {
-        <tr>
-            <td>@flight.FlightNumber</td>
-            <td>@flight.FromAirport</td>
-            <td>@flight.ToAirport</td>
-            <td>@flight.DepartureTime</td>
-            <td>@flight.ArrivalTime.Subtract(flight.DepartureTime)</td>
+        <a asp-action="Create" class="btn btn-primary float-right">Create new</a>
+    }
+
+
+    <table class="table table-hover table-bordered auto-datatable">
+        <thead>
+        <tr class="font-weight-bold">
+            <th>Flight number</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Departure time</th>
+            <th>Duration</th>
             @if (User.Identity.IsAuthenticated)
             {
-                <td>@flight.PlaneType</td>
-                <td>@flight.PilotName</td>
-                <td>@flight.RegularSeats</td>
-                <td>@flight.BusinessSeats</td>
+                <th>Plane type</th>
+                <th>Pilot</th>
+                <th>Regular seats</th>
+                <th>Business seats</th>
+                <th class="none">Actions</th>
             }
-            <td>
-                <a class="btn btn-primary" asp-controller="Flights" asp-action="Book" asp-route-id="@flight.Id">Reserve ticket</a>
+            else
+            {
+                <th>Booking</th>
+            }
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var flight in Model)
+        {
+            <tr>
+                <td>@flight.FlightNumber</td>
+                <td>@flight.FromAirport</td>
+                <td>@flight.ToAirport</td>
+                <td>@flight.DepartureTime</td>
+                <td>@flight.ArrivalTime.Subtract(flight.DepartureTime)</td>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <a class="btn btn-secondary" asp-controller="Flights" asp-action="Details" asp-route-id="@flight.Id">Details</a>
+                    <td>@flight.PlaneType</td>
+                    <td>@flight.PilotName</td>
+                    <td>@flight.RegularSeats</td>
+                    <td>@flight.BusinessSeats</td>
                 }
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Flights" asp-action="Book" asp-route-id="@flight.Id">Reserve ticket</a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="btn btn-secondary" asp-controller="Flights" asp-action="Details" asp-route-id="@flight.Id">Details</a>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+</div>
+
+<div style="position: fixed; top:0; right: 0; z-index: -99; width: 100%; height: 100%">
+    <iframe frameborder="0" height="100%" width="100%"
+            src="https://youtube.com/embed/Qo3OM5sPUPM?autoplay=1&controls=0&showinfo=0&autohide=1&mute=1">
+    </iframe>
+</div>
