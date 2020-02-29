@@ -57,17 +57,19 @@ namespace Planefall.Services
             await this.Context.SaveChangesAsync();
 
 
-            this.emailSender.SendEmail(model.Email, EmailMessages.ReservationConfirmationSubject,
-                string.Format(EmailMessages.ReservationConfirmationBody,
-                    ticket.FirstName,
-                    ticket.LastName,
-                    flight.FlightNumber,
-                    ticket.MiddleName,
-                    ticket.IdNumber,
-                    ticket.PhoneNumber,
-                    ticket.Citizenship,
-                    ticket.TicketType
-                ));
+            Task.Run(() =>
+                this.emailSender.SendEmail(model.Email, EmailMessages.ReservationConfirmationSubject,
+                    string.Format(EmailMessages.ReservationConfirmationBody,
+                        ticket.FirstName,
+                        ticket.LastName,
+                        flight.FlightNumber,
+                        ticket.MiddleName,
+                        ticket.IdNumber,
+                        ticket.PhoneNumber,
+                        ticket.Citizenship,
+                        ticket.TicketType
+                    ))
+            );
 
             return true;
         }
