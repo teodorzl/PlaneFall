@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿@using Planefall.Common
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -13,11 +14,18 @@
 <body>
 <partial name="_NavbarPartial"/>
 
-<main>
-    <div class="container mt-4">
-        @RenderBody()
-    </div>
-</main>
+@if (!(bool) (ViewData[GlobalConstants.DisableContainerKey] ?? false))
+{
+    <main>
+        <div class="container mt-4">
+            @RenderBody()
+        </div>
+    </main>
+}
+else
+{
+    @RenderBody()
+}
 
 <script src="~/js/jquery.min.js"></script>
 <script src="~/js/bootstrap.bundle.min.js"></script>

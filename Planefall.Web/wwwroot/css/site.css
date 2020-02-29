@@ -80,91 +80,70 @@
     }
 }
 
-.index-background {
-    background-image: linear-gradient(
-            rgba(23, 23, 23, 0) 85%,
-            rgba(23, 23, 23, 0.95)
-    ),
-    url("/img/home-image.jpg");
-    background-size: cover;
-    background-position: center;
+.preload {
+    position: fixed;
+    width: 100%;
     height: 100vh;
+    background: #77b3d4;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
 }
 
-.index-heading {
+.preload .home-text {
+    position: absolute;
+    top: 20%;
+    transform: translateY(-50%);
     color: white;
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    padding: 10px 20px;
-    font-size: 8vw;
+    font-family: sans-serif;
 }
 
-.index-paragraph {
-    color: gray;
-    font-size: 7vw;
+.plane {
+    width: 50%;
+    height: 50%;
+    animation: airplane 3s ease-in-out infinite alternate;
 }
 
-.index-text-container {
-    background-color: rgba(23, 23, 23, .7);
-    width: 100%;
+.cloud1,
+.cloud2,
+.cloud3 {
+    height: 20%;
+    position: absolute;
+    z-index: -1;
 }
 
-@media (min-width: 768px) {
-    .index-heading {
-        font-size: 4vw;
+.cloud1 {
+    top: 25%;
+    transform: translate(100%, -25%);
+    animation: clouds 13s ease infinite;
+}
+
+.cloud2 {
+    top: 50%;
+    transform: translate(100%, -50%);
+    animation: clouds 20s ease infinite;
+}
+
+.cloud3 {
+    top: 75%;
+    transform: translate(100%, -75%);
+    animation: clouds 16s ease infinite;
+}
+
+@keyframes airplane {
+    from {
+        transform: translateY(0px);
     }
-
-    .index-paragraph {
-        font-size: 3vw;
+    to {
+        transform: translateY(50px);
     }
 }
 
-.about-holder {
-    height: 100vh;
-    background: linear-gradient(
-            rgba(23, 23, 23, 0.95) 5%,
-            rgba(23, 23, 23, 0.75) 20%,
-            rgba(23, 23, 23, 0.55)
-    ),
-    url("/img/home-image-2.jpg") center;
-    background-size: cover;
-
-    scrollbar-width: none;
-}
-
-.about-holder img {
-    height: 19vh;
-}
-
-.about-holder::-webkit-scrollbar {
-    display: none;
-}
-
-.team-holder {
-    height: 50vh;
-}
-
-.team-member {
-    margin: 3em;
-    flex-grow: 1;
-    flex-basis: 0;
-    transition-duration: 300ms;
-}
-
-.team-member:hover {
-    transform: translate(0, -15px);
-}
-
-.team-member h1 {
-    word-spacing: 100vw;
-}
-
-.team-member img {
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    height: 15vh;
+@keyframes clouds {
+    from {
+        right: 0;
+    }
+    to {
+        right: 130%;
+    }
 }
